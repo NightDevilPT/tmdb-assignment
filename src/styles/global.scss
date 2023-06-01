@@ -1,0 +1,341 @@
+@use "./mixin.scss" as mixin;
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+:root {
+	--primary-back: #d6e1e2;
+	--secondary-back: #b9b9b9;
+	--primary-color: black;
+	--secondary-color: #666666;
+	--highlight: #ff0000;
+	--hover: #bbbbbb;
+	--family: "Ubuntu", sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--family);
+}
+
+html {
+	font-size: 10px;
+}
+
+:any-link {
+	text-decoration: none;
+}
+
+.App {
+	@include mixin.width-height($h: 100vh);
+	background-color: var(--primary-back);
+
+	.header-section {
+		@include mixin.width-height($h: 80px, $p: sticky);
+		top: 0;
+		left: 0;
+		@include mixin.flex($jc: flex-start);
+		border-bottom: 1px solid var(--primary-color);
+		padding-inline: 15px;
+		z-index: 1;
+		background-color: var(--primary-back);
+
+		.header-title-section {
+			@include mixin.width-height($w: auto);
+
+			h1 {
+				color: var(--primary-color);
+				font-size: 4rem;
+				font-family: var(--family);
+
+				span {
+					color: var(--highlight);
+				}
+			}
+		}
+	}
+
+	.loading-section {
+		@include mixin.width-height($h: 100px);
+		@include mixin.flex();
+		margin-top: 20px;
+
+		.loading {
+			@include mixin.width-height($w: 90px, $h: 90px);
+			@include mixin.flex();
+			border-radius: 50%;
+			font-size: 1.5rem;
+			font-weight: bold;
+			font-family: var(--family);
+			border-radius: 50%;
+
+			&:after {
+				@include mixin.width-height($h: 100%, $p: absolute);
+				content: "";
+				border-radius: 50%;
+				border: 4px solid var(--hover);
+				border-top: 4px solid var(--highlight);
+				border-bottom: 4px solid var(--highlight);
+				animation: spin 3s linear infinite;
+			}
+
+			@keyframes spin {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		}
+	}
+
+	.section {
+		@include mixin.width-height($h: calc(100% - 80px));
+		overflow-x: hidden;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+
+		.tabs-section {
+			@include mixin.width-height($h: 50px, $p: sticky);
+			top: 0px;
+			left: 0;
+			@include mixin.flex($jc: flex-start, $g: 2rem);
+			border-bottom: 1px solid var(--secondary-back);
+			padding-inline: 15px;
+			z-index: 1;
+			background-color: var(--primary-back);
+
+			.tabs {
+				@include mixin.width-height($w: 100px, $h: 80%);
+				font-size: 2rem;
+				font-weight: bold;
+				border: none;
+				outline: none;
+				background-color: transparent;
+				transition: 0.2s all ease-in-out;
+				border-radius: 5px;
+
+				&:hover {
+					background-color: var(--hover);
+				}
+			}
+
+			.active-tabs {
+				color: var(--highlight);
+			}
+
+			.indicator {
+				@include mixin.width-height($w: 80px, $h: 5px, $p: absolute);
+				bottom: 0;
+				border-radius: 10px;
+				background-color: var(--highlight);
+				transition: 0.2s all ease-in-out;
+			}
+		}
+
+		.data-section {
+			@include mixin.width-height();
+			margin-top: 10px;
+
+			.card-section {
+				@include mixin.width-height();
+				@include mixin.flex(
+					$g: 20px,
+					$jc: center,
+					$ai: flex-start,
+					$w: wrap
+				);
+
+				.card-div {
+					@include mixin.width-height($w: 300px);
+					@include mixin.flex($d: column, $jc: flex-start, $g: 10px);
+					min-width: 300px;
+					min-height: 540px;
+					padding: 15px;
+					background-color: var(--secondary-back);
+					border-radius: 10px;
+
+					.img-div {
+						@include mixin.width-height($h: 400px);
+
+						img {
+							@include mixin.width-height();
+							object-fit: cover;
+							border-radius: 5px;
+						}
+					}
+
+					.card-info {
+						@include mixin.width-height($h: auto);
+
+						.card-name {
+							@include mixin.width-height();
+							color: var(--primary-color);
+							font-size: 2.5rem;
+							display: -webkit-box;
+							-webkit-line-clamp: 2;
+							-webkit-box-orient: vertical;
+						}
+						.card-date {
+							@include mixin.width-height();
+							margin-top: 10px;
+							color: var(--secondary-color);
+							font-size: 2rem;
+						}
+
+						.card-rating{
+							@include mixin.width-height($w:auto,$p:absolute);
+							@include mixin.flex($jc:flex-start,$g:.5rem);
+							color: white;
+							padding: 3px;
+							padding-inline: 8px;
+							right: 0;
+							bottom: 0;
+							border-radius: 5px;
+							
+							.rating-icon{
+								@include mixin.width-height($w:20px,$h:20px);
+							}
+
+							.rating{
+								font-size: 1.5rem;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	.details-section{
+		@include mixin.width-height($h: calc(100% - 80px));
+		overflow-x: hidden;
+		overflow-y: auto;
+		scroll-behavior: smooth;
+
+		
+
+		.back-header{
+			@include mixin.width-height($h:50px,$p:sticky);
+			@include mixin.flex($jc:flex-start);
+			top: 0;
+			z-index: 1;
+			padding-inline: 10px;
+			border-bottom: 1px solid var(--secondary-color);
+			background-color: var(--primary-back);
+			
+			.back-icon{
+				@include mixin.width-height($w:35px,$h:35px);
+				color: var(--primary-color);
+			}
+		}
+
+
+		.details-info-section{
+			@include mixin.width-height();
+			@include mixin.flex($jc:flex-start,$ai:flex-start,$g:15px);
+			padding-inline: 10px;
+			margin-top: 15px;
+
+			@include mixin.media-break($b:680px){
+				flex-direction: column;
+			}
+
+			.poster-section{
+				@include mixin.width-height($w:300px,$h:auto);
+				padding-inline: 10px;
+
+				@include mixin.media-break($b:680px){
+					width: 100%;
+				}
+
+					img{
+						@include mixin.width-height();
+						object-fit: cover;
+						border-radius: 10px;
+					}
+				
+			}
+
+			.details-info-wrapper{
+				@include mixin.width-height($w:calc(100% - 330px));
+				@include mixin.flex($jc:flex-start,$ai:flex-start,$d:column);
+				min-width: calc(100% - 350px);
+
+				@include mixin.media-break($b:680px){
+					width: 100%;
+				}
+
+				.poster-title{
+					font-size: 3.2rem;
+					color: var(--primary-color);
+				}				
+				.poster-tag-line{
+					font-size: 1.5rem;
+					font-style: italic;
+				}
+
+				.poster-overview-section{
+					@include mixin.width-height();
+					@include mixin.flex($d:column,$jc:flex-start,$ai:flex-start,$g:.5rem);
+					margin-top: 10px;
+
+					.overview-header{
+						@include mixin.width-height();
+						font-size: 2rem;
+						color: var(--primary-color);
+					}
+
+					.overview{
+						@include mixin.width-height();
+						font-size: 1.6rem;
+						color: var(--secondary-color);
+						font-style: italic;
+						font-weight: bold;
+					}
+				}
+
+				.poster-genres-section{
+					@include mixin.width-height();
+					@include mixin.flex($jc:flex-start,$ai:flex-start,$g:1rem);
+					margin-top: 10px;
+
+					.genres{
+						@include mixin.width-height($w:auto);
+						padding: 3px;
+						padding-inline: 8px;
+						color: white;
+						font-weight: bold;
+						font-size: 1.5rem;
+						background-color: #f92147;
+						border-radius: 5px;
+					}
+
+					.rating-section{
+						@include mixin.width-height($w:auto);
+						@include mixin.flex($g:.5rem);
+						border-radius: 5px;
+						color: white;
+						padding: 3px;
+						padding-inline: 5px;
+
+						.rating-icon{
+							@include mixin.width-height($w:18px,$h:18px);
+						}
+						.rating{
+							font-size: 1.3rem;
+							font-weight: bold;
+						}
+					}
+				}
+
+				.poster-info{
+					@include mixin.width-height();
+					@include mixin.flex($jc:flex-start,$g:1rem);
+					margin-top: 10px;
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+}
