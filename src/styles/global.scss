@@ -211,9 +211,7 @@ html {
 		@include mixin.width-height($h: calc(100% - 80px));
 		overflow-x: hidden;
 		overflow-y: auto;
-		scroll-behavior: smooth;
-
-		
+		scroll-behavior: smooth;		
 
 		.back-header{
 			@include mixin.width-height($h:50px,$p:sticky);
@@ -297,7 +295,7 @@ html {
 
 				.poster-genres-section{
 					@include mixin.width-height();
-					@include mixin.flex($jc:flex-start,$ai:flex-start,$g:1rem);
+					@include mixin.flex($jc:flex-start,$ai:flex-start,$g:1rem,$w:wrap);
 					margin-top: 10px;
 
 					.genres{
